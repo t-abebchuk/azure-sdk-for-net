@@ -20,11 +20,6 @@ namespace Azure.ResourceManager.Kusto.Models
                 writer.WritePropertyName("port"u8);
                 writer.WriteNumberValue(Port.Value);
             }
-            if (Optional.IsDefined(IPAddress))
-            {
-                writer.WritePropertyName("ipAddress"u8);
-                writer.WriteStringValue(IPAddress);
-            }
             writer.WriteEndObject();
         }
 
@@ -35,7 +30,6 @@ namespace Azure.ResourceManager.Kusto.Models
                 return null;
             }
             Optional<int> port = default;
-            Optional<string> ipAddress = default;
             foreach (var property in element.EnumerateObject())
             {
                 if (property.NameEquals("port"u8))
@@ -47,13 +41,8 @@ namespace Azure.ResourceManager.Kusto.Models
                     port = property.Value.GetInt32();
                     continue;
                 }
-                if (property.NameEquals("ipAddress"u8))
-                {
-                    ipAddress = property.Value.GetString();
-                    continue;
-                }
             }
-            return new EndpointDetail(Optional.ToNullable(port), ipAddress.Value);
+            return new EndpointDetail(Optional.ToNullable(port));
         }
     }
 }

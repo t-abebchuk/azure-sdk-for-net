@@ -17,16 +17,12 @@ namespace Azure.ResourceManager.Kusto.Models
 
         /// <summary> Initializes a new instance of EndpointDetail. </summary>
         /// <param name="port"> The port an endpoint is connected to. </param>
-        /// <param name="ipAddress"> The ip address of the endpoint. </param>
-        internal EndpointDetail(int? port, string ipAddress)
+        internal EndpointDetail(int? port)
         {
             Port = port;
-            IPAddress = ipAddress;
         }
 
         /// <summary> The port an endpoint is connected to. </summary>
         public int? Port { get; set; }
-        /// <summary> The ip address of the endpoint. </summary>
-        public string IPAddress { get; set; }
     }
 }

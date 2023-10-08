@@ -25,11 +25,6 @@ namespace Azure.ResourceManager.Kusto.Models
                 writer.WritePropertyName("languageExtensionImageName"u8);
                 writer.WriteStringValue(LanguageExtensionImageName.Value.ToString());
             }
-            if (Optional.IsDefined(LanguageExtensionCustomImageName))
-            {
-                writer.WritePropertyName("languageExtensionCustomImageName"u8);
-                writer.WriteStringValue(LanguageExtensionCustomImageName);
-            }
             writer.WriteEndObject();
         }
 
@@ -41,7 +36,6 @@ namespace Azure.ResourceManager.Kusto.Models
             }
             Optional<KustoLanguageExtensionName> languageExtensionName = default;
             Optional<KustoLanguageExtensionImageName> languageExtensionImageName = default;
-            Optional<string> languageExtensionCustomImageName = default;
             foreach (var property in element.EnumerateObject())
             {
                 if (property.NameEquals("languageExtensionName"u8))
@@ -62,13 +56,8 @@ namespace Azure.ResourceManager.Kusto.Models
                     languageExtensionImageName = new KustoLanguageExtensionImageName(property.Value.GetString());
                     continue;
                 }
-                if (property.NameEquals("languageExtensionCustomImageName"u8))
-                {
-                    languageExtensionCustomImageName = property.Value.GetString();
-                    continue;
-                }
             }
-            return new KustoLanguageExtension(Optional.ToNullable(languageExtensionName), Optional.ToNullable(languageExtensionImageName), languageExtensionCustomImageName.Value);
+            return new KustoLanguageExtension(Optional.ToNullable(languageExtensionName), Optional.ToNullable(languageExtensionImageName));
         }
     }
 }
